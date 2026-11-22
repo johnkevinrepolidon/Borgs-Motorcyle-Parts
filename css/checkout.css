@@ -1,1 +1,33 @@
-/* Repolidon: checkout and order review styles. Built in Steps 3 and 9 of the guide. */
+.grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;align-items:start}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+label{display:block;font-weight:600;margin:0 0 5px}
+input,select,textarea{width:100%;font:inherit;color:var(--text);background:var(--field);border:1.5px solid var(--line);border-radius:10px;padding:11px 13px}
+.f{margin-bottom:16px}
+.err{color:var(--red);font-size:13px;font-weight:600;margin-top:4px}
+.bad{border-color:var(--red)}
+.seg{display:flex;gap:10px}
+.seg label{flex:1;margin:0;border:1.5px solid var(--line);border-radius:10px;padding:11px 13px;cursor:pointer;display:flex;gap:8px;align-items:center}
+.seg input{width:auto}
+.seg label:has(input:checked){border-color:var(--red);background:color-mix(in srgb,var(--red) 9%,transparent)}
+.line{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.line small{color:var(--muted);display:block}
+.total{display:flex;justify-content:space-between;align-items:center;padding-top:16px;font-weight:700}
+.total .price{font-size:24px}
+.note{font-size:13px;color:var(--muted);margin-top:12px}
+.empty{text-align:center;padding:28px 10px;color:var(--muted)}
+.ack{max-width:620px;margin:20px auto;text-align:center;border-top:6px solid var(--red)}
+.ack .num{font-size:26px;color:var(--red);display:block;margin:10px 0}
+.demo{margin-top:22px;font-size:13px;color:var(--muted)}
+.demo button{background:none;border:0;color:var(--red);font:inherit;font-weight:700;cursor:pointer;text-decoration:underline;padding:0 6px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 16px}
+.tools input,.tools select{width:auto;flex:1;min-width:160px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:640px}
+th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--charcoal);color:#fff;font-size:13px}
+.badge{display:inline-block;padding:3px 11px;border-radius:999px;font-size:12px;font-weight:700;border:1.5px solid}
+.s-New{color:var(--red);border-color:var(--red)}
+.s-Contacted{color:#b36b00;border-color:#b36b00}
+.s-Completed{color:#1d7a3a;border-color:#1d7a3a}
+.s-Cancelled{color:var(--muted);border-color:var(--muted)}
+details>summary{cursor:pointer;color:var(--red);font-weight:700}
