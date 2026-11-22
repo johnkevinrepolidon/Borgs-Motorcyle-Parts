@@ -80,7 +80,13 @@ function nextOrderId() {
   return `BM-${day}-${String(count).padStart(4, "0")}`;
 }
 
-function renderAck(order) { alert("Saved " + order.id); }
+function renderAck(o) {
+  app.innerHTML = `<section class="card ack"><h1>Request sent</h1>
+    <p>Thank you, ${esc(o.customer.name)}. We’ll contact you at ${esc(o.customer.contact)} to confirm your order.</p>
+    <span class="num">${o.id}</span>
+    <p class="note">Keep this order number for reference. ${o.customer.fulfillment} · Estimated total ${peso(o.total)}</p>
+    <p><a class="btn sec" href="orders.html">View order requests</a></p></section>`;
+}
 
 function submitOrder(cart) {
   const data = readForm();
