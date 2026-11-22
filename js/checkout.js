@@ -43,3 +43,40 @@ function bindForm(cart) {
   const form = document.getElementById("form");
   form.querySelectorAll("[name=ful]").forEach(r => {
     r.onchange = () => { document.getElementById("addrw").hidden = form.ful.value !== "Delivery"; };
+  });
+  form.onsubmit = e => { e.preventDefault(); submitOrder(cart); };
+}
+
+function setErr(id, msg) {
+  document.getElementById("e-" + id).textContent = msg || "";
+  const field = document.getElementById(id);
+  if (field) field.classList.toggle("bad", !!msg);
+  return !msg;
+}
+
+function readForm() {
+  return {
+    name: document.getElementById("name").value.trim(),
+    contact: document.getElementById("contact").value.replace(/[\s-]/g, ""),
+    fulfillment: document.querySelector("[name=ful]:checked").value,
+    address: document.getElementById("address").value.trim(),
+    notes: document.getElementById("notes").value.trim()
+  };
+}
+
+function validate(data, cart) {
+  let ok = true;
+  ok = setErr("name", data.name.length < 2 ? "Enter your full name." : "") && ok;
+  ok = setErr("contact", /^(09\d{9}|\+639\d{9})$/.test(data.contact) ? "" : "Enter a valid mobile number, like 09561506729.") && ok;
+  ok = setErr("address", data.fulfillment === "Delivery" && data.address.length < 5 ? "Enter the delivery address." : "") && ok;
+  ok = setErr("cart", cart.length ? "" : "Your cart needs at least one product before you can send a request.") && ok;
+  return ok;
+}
+
+function submitOrder(cart) {
+  const data = readForm();
+  if (!validate(data, cart)) return;
+  alert("Valid. Saving comes next.");
+}
+
+renderCheckout();
