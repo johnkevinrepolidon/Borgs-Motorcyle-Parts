@@ -12,7 +12,18 @@ function renderCheckout() {
   bindForm(cart);
 }
 
-function formHTML() { return "<h2>Your details</h2><p>Form goes here.</p>"; }
+function formHTML() {
+  return `<h2>Your details</h2>
+    <div class="f"><label for="name">Full name</label><input id="name" autocomplete="name"><div class="err" id="e-name"></div></div>
+    <div class="f"><label for="contact">Contact number</label><input id="contact" inputmode="tel" autocomplete="tel" placeholder="09XXXXXXXXX"><div class="err" id="e-contact"></div></div>
+    <div class="f"><label>How will you get your order?</label>
+      <div class="seg"><label><input type="radio" name="ful" value="Pickup" checked> Pickup</label><label><input type="radio" name="ful" value="Delivery"> Delivery</label></div></div>
+    <div class="f" id="addrw" hidden><label for="address">Delivery address</label><textarea id="address" rows="2"></textarea><div class="err" id="e-address"></div></div>
+    <div class="f"><label for="notes">Notes (optional)</label><textarea id="notes" rows="2" placeholder="Motorcycle model, preferred time to be contacted"></textarea></div>
+    <div class="err" id="e-cart"></div>
+    <button class="btn" type="submit">Send order request</button>
+    <p class="note">No payment is taken here. Prices are saved as shown at the time of your request.</p>`;
+}
 
 function loadSample() { saveCart(SAMPLE_CART); renderCheckout(); }
 function clearCart() { saveCart([]); renderCheckout(); }
@@ -28,6 +39,7 @@ function summaryHTML(cart) {
       <button type="button" onclick="clearCart()">Empty the cart</button></p>`;
 }
 
-function bindForm(cart) {}
-
-renderCheckout();
+function bindForm(cart) {
+  const form = document.getElementById("form");
+  form.querySelectorAll("[name=ful]").forEach(r => {
+    r.onchange = () => { document.getElementById("addrw").hidden = form.ful.value !== "Delivery"; };
