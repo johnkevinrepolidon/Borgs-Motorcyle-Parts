@@ -1,0 +1,26 @@
+/* Shared styles: brand tokens, navigation, layout, buttons, cards */
+:root{--red:#E30613;--dark-red:#8B0000;--black:#000;--charcoal:#2A2A2A;--white:#fff;
+--bg:#f3f3f3;--surface:#fff;--text:#1b1b1b;--muted:#5d5d5d;--line:#d9d9d9;--field:#fff;
+--font-heading:'Exo 2','Arial Black',sans-serif;--font-body:'Montserrat',Arial,sans-serif;--font-accent:'Orbitron','Arial Black',sans-serif;color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--bg:#141414;--surface:#1f1f1f;--text:#f1f1f1;--muted:#a9a9a9;--line:#3a3a3a;--field:#151515;color-scheme:dark}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:500 15px/1.55 var(--font-body)}
+.top{background:var(--black);color:#fff;font-size:13px;padding:6px 20px;display:flex;gap:18px;flex-wrap:wrap}
+nav{background:var(--charcoal);position:sticky;top:0;z-index:10;border-bottom:3px solid var(--red)}
+.navin{max-width:1120px;margin:auto;display:flex;align-items:center;gap:4px;padding:8px 20px;flex-wrap:wrap}
+.navin img{height:54px;width:auto;margin-right:auto;display:block}
+nav a.tab{color:#fff;text-decoration:none;font-weight:600;padding:10px 12px;border-bottom:3px solid transparent;margin-bottom:-3px}
+nav a.tab[aria-current="page"]{border-bottom-color:var(--red)}
+.pill{background:var(--red);border-radius:999px;padding:1px 8px;font-size:12px}
+main{max-width:1120px;margin:0 auto;padding:28px 20px 56px}
+h1,h2{font-family:var(--font-heading);font-style:italic;font-weight:800;margin:0 0 6px;letter-spacing:.01em}
+h1{font-size:clamp(30px,5vw,46px);text-transform:uppercase}h2{font-size:22px}
+.lead{color:var(--muted);margin:0 0 22px;max-width:60ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+.btn{display:inline-block;text-decoration:none;font:700 15px var(--font-body);border:2px solid var(--red);background:var(--red);color:#fff;border-radius:999px;padding:12px 26px;cursor:pointer}
+.btn:hover{background:var(--dark-red);border-color:var(--dark-red)}.btn.sec{background:var(--black)}
+.price{color:var(--red);font-family:var(--font-accent);font-weight:700;white-space:nowrap}
+.num{font-family:var(--font-accent);font-weight:700}
+.todo{border:2px dashed var(--line);border-radius:14px;padding:28px;text-align:center;color:var(--muted)}
+.hero{background:var(--black) url(../assets/header-cover.jpg) center/cover;border-radius:14px;min-height:220px;margin-bottom:22px}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--red);outline-offset:2px}
