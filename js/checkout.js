@@ -73,10 +73,36 @@ function validate(data, cart) {
   return ok;
 }
 
+function nextOrderId() {
+  const d = new Date(), p = n => String(n).padStart(2, "0");
+  const day = `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}`;
+  const count = getOrders().filter(o => o.id.includes(day)).length + 1;
+  return `BM-${day}-${String(count).padStart(4, "0")}`;
+}
+
+function renderAck(order) { alert("Saved " + order.id); }
+
 function submitOrder(cart) {
   const data = readForm();
   if (!validate(data, cart)) return;
-  alert("Valid. Saving comes next.");
+  const items = cart.map(i => ({
+    id: i.id, name: i.name, brand: i.brand,
+    unitPrice: i.price, qty: i.qty, lineTotal: i.price * i.qty
+  }));
+  const order = {
+    id: nextOrderId(),
+    createdAt: new Date().toISOString(),
+    status: "New",
+    customer: {
+      name: data.name, contact: data.contact, fulfillment: data.fulfillment,
+      address: data.fulfillment === "Delivery" ? data.address : "", notes: data.notes
+    },
+    items,
+    total: cartTotal(cart)
+  };
+  saveOrders([order, ...getOrders()]);
+  saveCart([]);
+  renderAck(order);
 }
 
 renderCheckout();
